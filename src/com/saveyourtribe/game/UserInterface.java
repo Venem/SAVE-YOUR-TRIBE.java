@@ -4,7 +4,7 @@ public class UserInterface {
 
 	public void print(String text) {
 		int words = text.split("\\s+").length;
-		int timeInMs = 10000 * words - 4000;
+		int timeInMs = 10000 * words - 2000;
 		// Randomise waiting time
 		int sleepFor = (timeInMs + Main.randObj.nextInt(4000)) / 42;
 		// Temporary printing text to screen

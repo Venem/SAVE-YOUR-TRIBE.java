@@ -2,33 +2,25 @@ package com.saveyourtribe.game;
 
 public class Games {
 
-	public static int lives = 5;
-	public static int gold = 0;
-
-	public static String[] positiveAnswers = {
+	public String[] positiveAnswers = {
 		"y", "yes", "yeah", "aha", "affirmative", "true", "t", "sure", "yup",
-		"yarp", "yeth", "yarrr, it's rewind time", "oui"
+		"yarp", "yeth", "yarrr, it's rewind time", "oui", "da"
 	};
-	public static String[] negativeAnswers = {
+	public String[] negativeAnswers = {
 		"n", "no", "nope", "negative", "false", "f", "nah", "narp", "non", "nyet",
-    		"how dare you", "u stoopid"
+    	"how dare you", "u stoopid"
 	};
-	public static String[][] quizQuestions = {
+	public String[][] quizQuestions = {
 		{"10 + 9", "19", "true"},
 		{"16 * 2", "49", "false"},
 		{"5 * 3 - 1", "15", "false"},
-    	{"9 + 10", "21", "false"},
-    	{"10 + 2", "12", "true"},
-   		{"100 + 100", "100 * 2", "true"},
-   		{"10 - 4", "4", "false"}
+		{"9 + 10", "21", "false"},
+		{"10 + 2", "12", "true"},
+		{"100 + 100", "100 * 2", "true"},
+		{"10 - 4", "4", "false"}
 	};
 
-	public static void loseLife(int livesToLose) {
-		lives = lives - livesToLose;
-		Main.ui.print("You have lost " + livesToLose + " life/lives. You have " + lives + " left");
-	}
-
-	public static void removeQuizQuestionAtIndex(int index) {
+	public void removeQuizQuestionAtIndex(int index) {
 		// Create a new 2D array
 		String[][] arrayCopy = new String[quizQuestions.length-1][quizQuestions[0].length];
 
@@ -43,12 +35,12 @@ public class Games {
 		quizQuestions = arrayCopy;
 	}
 
-	public static void quiz() {
+	public void quiz() {
 		String answer;
 		boolean isCorrect = false;
 		int qIndex = Main.randObj.nextInt(quizQuestions.length);
 
-		while (lives > 0) {
+		while (Main.lives > 0) {
 			System.out.print("Is " + quizQuestions[qIndex][0] + " equal to " + quizQuestions[qIndex][1] +": ");
 			answer = Main.scanObj.nextLine();
 			if (quizQuestions[qIndex][2].equals("true")) {
@@ -72,7 +64,7 @@ public class Games {
 				break;
 			} else {
 				Main.ui.print("Try again");
-				loseLife(1);
+				Main.utility.loseLife(1);
 			}
 		}
 	}
